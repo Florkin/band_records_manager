@@ -6,8 +6,10 @@ use App\Entity\Record;
 use App\Service\FileUploader;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class RecordFixtures extends Fixture
@@ -24,30 +26,35 @@ class RecordFixtures extends Fixture
      * @var SluggerInterface
      */
     private $slugger;
+    /**
+     * @var ContainerBagInterface
+     */
+    private $params;
 
     /**
      * RecordFixtures constructor.
      * @param Filesystem $filesystem
      * @param SluggerInterface $slugger
+     * @param ContainerBagInterface $params
      */
-    public function __construct(Filesystem $filesystem, SluggerInterface $slugger)
+    public function __construct(Filesystem $filesystem, SluggerInterface $slugger, ContainerBagInterface $params)
     {
         $this->filesystem = $filesystem;
         $this->slugger = $slugger;
-        $this->fileUploader = new FileUploader('public/songs/records', $this->slugger);
+        $this->params = $params;
+        $this->fileUploader = new FileUploader($this->params->get('app.records_path'), $this->slugger);
     }
 
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 5; $i++) {
+        $this->cleanRecordsFolder();
+        for ($i = 0; $i < 30; $i++) {
             $record = new Record();
             $file = $this->getTestFile();
-            $filename = $this->fileUploader->upload($file);
-            $record->setRecordName($filename);
+            $record->setRecordName($file->getFilename());
             $record->setRecordFile($file);
             $manager->persist($record);
         }
-
         $manager->flush();
     }
 
@@ -58,7 +65,15 @@ class RecordFixtures extends Fixture
         $targetPath = sys_get_temp_dir() . '/' . $fileName;
 
         $this->filesystem->copy($originalPath, $targetPath, false);
-        $file = new File($targetPath, $fileName, "audio/mpeg", null, true);
-        return $file;
+        return new UploadedFile($targetPath, $fileName, "audio/mpeg", null, true);
+    }
+
+    private function cleanRecordsFolder()
+    {
+        $files = glob($this->params->get('app.records_path') . '/**');
+        foreach ($files as $file) {
+            if (is_file($file))
+                unlink($file);
+        }
     }
 }

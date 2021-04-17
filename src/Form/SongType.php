@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Record;
 use App\Entity\Song;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,9 +15,6 @@ class SongType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('archivedAt')
         ;
     }
 

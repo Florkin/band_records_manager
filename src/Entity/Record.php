@@ -58,6 +58,11 @@ class Record
      */
     private $song;
 
+    public function __toString()
+    {
+        return $this->recordName;
+    }
+
     /**
      * Record constructor.
      */

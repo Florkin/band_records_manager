@@ -1,0 +1,9 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        song_record:
+            uri_prefix: /songs/records
+            upload_destination: '%kernel.project_dir%/public/songs/records'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+

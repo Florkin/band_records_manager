@@ -21,3 +21,6 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+### Don't track audio files, that would be dumb.
+public/songs/*

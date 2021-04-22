@@ -166,6 +166,10 @@ class RecordController extends AbstractController
         $song->addRecord($record);
         $this->entityManager->flush();
 
-        return new JsonResponse(['status' => 'success']);
+        $context = SerializationContext::create()->setGroups('recordList');
+        $jsonRecord = $this->serializer->serialize($record, 'json', $context);
+        $template = $this->renderView('record/partials/_record.html.twig', ['record' => $record]);
+
+        return new JsonResponse(['record' => $jsonRecord, 'template' => $template]);
     }
 }

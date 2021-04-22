@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Record;
+use App\Entity\Song;
 use App\Form\RecordType;
 use App\Repository\RecordRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
@@ -27,16 +29,25 @@ class RecordController extends AbstractController
      * @var Serializer
      */
     private $serializer;
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
 
     /**
      * RecordController constructor.
      * @param RecordRepository $recordRepository
      * @param SerializerInterface $serializer
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(RecordRepository $recordRepository, SerializerInterface $serializer)
-    {
+    public function __construct(
+        RecordRepository $recordRepository,
+        SerializerInterface $serializer,
+        EntityManagerInterface $entityManager
+    ) {
         $this->recordRepository = $recordRepository;
         $this->serializer = $serializer;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -125,6 +136,9 @@ class RecordController extends AbstractController
 
     /**
      * @Route("/{id}", name="record_delete", methods={"POST"})
+     * @param Request $request
+     * @param Record $record
+     * @return Response
      */
     public function delete(Request $request, Record $record): Response
     {
@@ -135,5 +149,27 @@ class RecordController extends AbstractController
         }
 
         return $this->redirectToRoute('record_index');
+    }
+
+    /**
+     * @Route("/record/add/{id}", name="add_record", methods={"POST"})
+     * @param Request $request
+     * @param Song|null $song
+     * @return Response
+     */
+    public function ajaxAddRecord(Request $request, Song $song = null)
+    {
+        $file = $request->files->get('file');
+        $record = new Record();
+        $record->setSong($song);
+        $record->setRecordFile($request->files->get('file'));
+        $song->addRecord($record);
+        $this->entityManager->flush();
+
+        $context = SerializationContext::create()->setGroups('recordList');
+        $jsonRecord = $this->serializer->serialize($record, 'json', $context);
+        $template = $this->renderView('record/partials/_record.html.twig', ['record' => $record]);
+
+        return new JsonResponse(['record' => $jsonRecord, 'template' => $template]);
     }
 }

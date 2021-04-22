@@ -21,6 +21,7 @@
         "@popperjs/core": "^2.9.1",
         "amplitudejs": "^5.3.1",
         "bootstrap": "^4.6.0",
+        "dropzone": "^5.9.2",
         "jquery": "^3.6.0"
     }
 }

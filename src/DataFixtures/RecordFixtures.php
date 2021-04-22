@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Record;
-use App\Service\FileUploader;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -19,10 +18,6 @@ class RecordFixtures extends Fixture implements DependentFixtureInterface
      * @var Filesystem
      */
     private $filesystem;
-    /**
-     * @var FileUploader
-     */
-    private $fileUploader;
     /**
      * @var SluggerInterface
      */
@@ -43,7 +38,6 @@ class RecordFixtures extends Fixture implements DependentFixtureInterface
         $this->filesystem = $filesystem;
         $this->slugger = $slugger;
         $this->params = $params;
-        $this->fileUploader = new FileUploader($this->params->get('app.absolute_records_path'), $this->slugger);
     }
 
     public function load(ObjectManager $manager)

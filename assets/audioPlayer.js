@@ -78,7 +78,7 @@ Amplitude.init({
         }
     },
     waveforms: {
-        sample_rate: 50
+        sample_rate: 200
     }
 });
 

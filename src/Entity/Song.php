@@ -28,7 +28,7 @@ class Song
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Record::class, mappedBy="song")
+     * @ORM\OneToMany(targetEntity=Record::class, mappedBy="song", cascade={"persist"})
      */
     private $records;
 

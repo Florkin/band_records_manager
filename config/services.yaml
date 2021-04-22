@@ -4,7 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    app.records_path: '%kernel.project_dir%/public/uploads/records'
+    app.absolute_records_path: '%kernel.project_dir%/public/uploads/records'
+    app.records_path: '/uploads/records'
     fixtures.number_of_songs: 10
 
 services:

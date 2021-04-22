@@ -3,7 +3,7 @@ vich_uploader:
 
     mappings:
         song_record:
-            uri_prefix: /songs/records
-            upload_destination: '%app.records_path%'
+            uri_prefix: /uploads/records
+            upload_destination: '%app.absolute_records_path%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 

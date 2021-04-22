@@ -5,7 +5,11 @@ namespace App\Controller;
 use App\Entity\Record;
 use App\Form\RecordType;
 use App\Repository\RecordRepository;
+use JMS\Serializer\SerializationContext;
+use JMS\Serializer\Serializer;
+use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,13 +20,45 @@ use Symfony\Component\Routing\Annotation\Route;
 class RecordController extends AbstractController
 {
     /**
-     * @Route("/", name="record_index", methods={"GET"})
+     * @var RecordRepository
      */
-    public function index(RecordRepository $recordRepository): Response
+    private $recordRepository;
+    /**
+     * @var Serializer
+     */
+    private $serializer;
+
+    /**
+     * RecordController constructor.
+     * @param RecordRepository $recordRepository
+     * @param SerializerInterface $serializer
+     */
+    public function __construct(RecordRepository $recordRepository, SerializerInterface $serializer)
     {
-        return $this->render('record/index.html.twig', [
-            'records' => $recordRepository->findAll(),
-        ]);
+        $this->recordRepository = $recordRepository;
+        $this->serializer = $serializer;
+    }
+
+    /**
+     * @Route("/", name="record_index", methods={"GET"})
+     * @param Request $request
+     * @return Response
+     */
+    public function index(Request $request): Response
+    {
+        if ($request->isXmlHttpRequest()) {
+            $context = SerializationContext::create()->setGroups('recordList');
+            $json = $this->serializer->serialize($this->recordRepository->findAll(), 'json', $context);
+
+            return new JsonResponse($json);
+        }
+
+        return $this->render(
+            'record/index.html.twig',
+            [
+                'records' => $this->recordRepository->findAll(),
+            ]
+        );
     }
 
     /**
@@ -42,10 +78,13 @@ class RecordController extends AbstractController
             return $this->redirectToRoute('record_index');
         }
 
-        return $this->render('record/new.html.twig', [
-            'record' => $record,
-            'form' => $form->createView(),
-        ]);
+        return $this->render(
+            'record/new.html.twig',
+            [
+                'record' => $record,
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**
@@ -53,9 +92,12 @@ class RecordController extends AbstractController
      */
     public function show(Record $record): Response
     {
-        return $this->render('record/show.html.twig', [
-            'record' => $record,
-        ]);
+        return $this->render(
+            'record/show.html.twig',
+            [
+                'record' => $record,
+            ]
+        );
     }
 
     /**
@@ -72,10 +114,13 @@ class RecordController extends AbstractController
             return $this->redirectToRoute('record_index');
         }
 
-        return $this->render('record/edit.html.twig', [
-            'record' => $record,
-            'form' => $form->createView(),
-        ]);
+        return $this->render(
+            'record/edit.html.twig',
+            [
+                'record' => $record,
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**

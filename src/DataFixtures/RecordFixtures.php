@@ -43,7 +43,7 @@ class RecordFixtures extends Fixture implements DependentFixtureInterface
         $this->filesystem = $filesystem;
         $this->slugger = $slugger;
         $this->params = $params;
-        $this->fileUploader = new FileUploader($this->params->get('app.records_path'), $this->slugger);
+        $this->fileUploader = new FileUploader($this->params->get('app.absolute_records_path'), $this->slugger);
     }
 
     public function load(ObjectManager $manager)
@@ -52,7 +52,7 @@ class RecordFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < $this->params->get('fixtures.number_of_songs') * 8; $i++) {
             $record = new Record();
             $file = $this->getTestFile();
-            $record->setRecordName($file->getFilename());
+            $record->setName($file->getFilename());
             $record->setRecordFile($file);
             $record->setSong($this->getReference('song_'.rand(0, $this->params->get('fixtures.number_of_songs') - 1)));
             $manager->persist($record);
@@ -73,7 +73,7 @@ class RecordFixtures extends Fixture implements DependentFixtureInterface
 
     private function cleanRecordsFolder()
     {
-        $files = glob($this->params->get('app.records_path').'/**');
+        $files = glob($this->params->get('app.absolute_records_path').'/**');
         foreach ($files as $file) {
             if (is_file($file)) {
                 unlink($file);

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RecordRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use JMS\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -18,11 +19,12 @@ class Record
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("recordList")
      */
     private $id;
 
     /**
-     * @Vich\UploadableField(mapping="song_record", fileNameProperty="recordName")
+     * @Vich\UploadableField(mapping="song_record", fileNameProperty="name")
      * @Assert\File(
      *     mimeTypes = {"audio/aac", "audio/mpeg"},
      *     mimeTypesMessage = "Wrong file type (aac, mp3)"
@@ -35,8 +37,9 @@ class Record
      * @ORM\Column(type="string")
      *
      * @var string|null
+     * @Groups("recordList")
      */
-    private $recordName;
+    private $name;
 
     /**
      * @ORM\Column(type="datetime")
@@ -60,7 +63,7 @@ class Record
 
     public function __toString()
     {
-        return $this->recordName;
+        return $this->name;
     }
 
     /**
@@ -95,14 +98,14 @@ class Record
         return $this->recordFile;
     }
 
-    public function setRecordName(?string $recordName): void
+    public function setName(?string $name): void
     {
-        $this->recordName = $recordName;
+        $this->name = $name;
     }
 
-    public function getRecordName(): ?string
+    public function getName(): ?string
     {
-        return $this->recordName;
+        return $this->name;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface

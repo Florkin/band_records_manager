@@ -6,6 +6,7 @@ use App\Repository\SongRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=SongRepository::class)
@@ -16,11 +17,13 @@ class Song
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("recordList")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("recordList")
      */
     private $name;
 

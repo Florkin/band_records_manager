@@ -1,10 +1,12 @@
 const Encore = require('@symfony/webpack-encore');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
+
 
 Encore
     // directory where compiled assets will be stored
@@ -22,7 +24,6 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('audioPlayer', './assets/audioPlayer.js')
-    .addEntry('fileDrop', './assets/fileDrop.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     // .enableStimulusBridge('./assets/controllers.json')
@@ -70,8 +71,27 @@ Encore
     // requires WebpackEncoreBundle 1.4 or higher
     //.enableIntegrityHashes(Encore.isProduction())
 
+    .addRule({
+        test: /\.font\.js/,
+        use: [
+            MiniCssExtractPlugin.loader,
+            {
+                loader: 'css-loader',
+                options: {
+                    url: false
+                }
+            },
+            'webfonts-loader'
+        ]
+    })
     // uncomment if you're having problems with a jQuery plugin
     .autoProvidejQuery()
 ;
+
+Encore.addPlugin(
+    new MiniCssExtractPlugin({
+        filename: Encore.isProduction() ? '[name].[contenthash].css' : '[name].css',
+    }),
+);
 
 module.exports = Encore.getWebpackConfig();

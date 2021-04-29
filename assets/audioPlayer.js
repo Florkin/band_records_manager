@@ -15,6 +15,12 @@ const getRecords = () => {
     return result;
 }
 
+const addRecord = (record, template) => {
+    const index = Amplitude.addSong(record);
+    const domElem = $(template)
+    domElem.attr('data-amplitude-song-index', index)
+    $('#records_list').prepend(domElem);
+}
 
 const initPlayer = () => {
     let recordLinks = document.getElementsByClassName('record-link');
@@ -31,37 +37,24 @@ initPlayer()
 */
 Amplitude.init({
     "songs": getRecords(),
-    "callbacks": {
-        'play': function () {
-            console.log("play")
-        },
-
-        'pause': function () {
-            console.log("pause")
-        }
-    },
     "volume": 100,
     waveforms: {
         sample_rate: 100
     }
 });
 
-
+// DROPZONE TO ADD NEW RECORDS
 Dropzone.autoDiscover = false;
-
 const dropzoneElem = document.getElementById('file-dropzone');
 const fileDrop = new Dropzone('#file-dropzone', {
     url: dropzoneElem.getAttribute('action'),
     acceptedFiles: 'audio/aac, audio/mpeg, .mp3, .aac',
-    init: function() {
-        this.on("success", function(file) {
+    dictDefaultMessage: $('#dropzone_placeholder_template').html(),
+    init: function () {
+        this.on("success", function (file) {
             const record = JSON.parse(JSON.parse(file.xhr.responseText).record);
             const template = JSON.parse(file.xhr.responseText).template;
-            const index = Amplitude.addSong(record);
-
-            const domElem = $(template)
-            domElem.attr('data-amplitude-song-index', index)
-            $('#records_list').append(domElem);
+            addRecord(record, template);
             Amplitude.bindNewElements();
             initPlayer()
         });

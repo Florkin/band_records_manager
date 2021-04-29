@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Song;
 use App\Form\SongType;
+use App\Repository\RecordRepository;
 use App\Repository\SongRepository;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
@@ -23,16 +24,22 @@ class SongController extends AbstractController
      */
     private $songRepository;
     private $serializer;
+    /**
+     * @var RecordRepository
+     */
+    private $recordRepository;
 
     /**
      * SongController constructor.
      * @param SongRepository $songRepository
+     * @param RecordRepository $recordRepository
      * @param SerializerInterface $serializer
      */
-    public function __construct(SongRepository $songRepository, SerializerInterface $serializer)
+    public function __construct(SongRepository $songRepository, RecordRepository $recordRepository, SerializerInterface $serializer)
     {
         $this->songRepository = $songRepository;
         $this->serializer = $serializer;
+        $this->recordRepository = $recordRepository;
     }
 
     /**
@@ -83,10 +90,12 @@ class SongController extends AbstractController
      */
     public function show(Song $song): Response
     {
+        $records = $this->recordRepository->findBySong($song);
         return $this->render(
             'song/show.html.twig',
             [
                 'song' => $song,
+                'records' => $records,
             ]
         );
     }
@@ -142,7 +151,7 @@ class SongController extends AbstractController
     public function ajaxGetRecords(Song $song)
     {
         $context = SerializationContext::create()->setGroups('recordList');
-        $json = $this->serializer->serialize($song->getRecords(), 'json', $context);
+        $json = $this->serializer->serialize($this->recordRepository->findBySong($song), 'json', $context);
 
         return new JsonResponse($json);
     }

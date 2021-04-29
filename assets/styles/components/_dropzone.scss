@@ -1,0 +1,7 @@
+.dropzone {
+  border: 1px dashed $light;
+
+  @include media-breakpoint-down(xl) {
+
+  }
+}

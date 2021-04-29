@@ -1,65 +1,72 @@
 @import "../base/variables";
 
-.amplitude-song-container {
-  padding: 15px 10px;
+#records_list {
+  max-height: 500px;
+  overflow-y: scroll;
+  flex-grow: 1;
 
-  @extend .border-bottom;
+  .amplitude-song-container {
+    padding: 15px 10px;
 
-  .amplitude-song-flex {
-    display: flex;
-    align-items: center;
-  }
+    @extend .border-bottom;
 
-  &.amplitude-play-pause {
-    cursor: pointer;
-
-    &:hover {
-      background: $light;
+    .amplitude-song-flex {
+      display: flex;
+      align-items: center;
     }
 
-    .play-button-container {
-      width: 40px;
+    &.amplitude-play-pause {
+      cursor: pointer;
 
-      .play-button {
-        @extend .btn;
+      &:hover {
+        background: $light;
+      }
 
-        padding: 0;
-        width: 16px;
-        height: 16px;
-        border-radius: 25px;
-        font-size: 6px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      .play-button-container {
+        width: 40px;
 
-        .icon {
-          display: inline-block;
-          position: relative;
-          left: 0.35px;
+        .play-button {
+          @extend .btn;
+
+          padding: 0;
+          width: 16px;
+          height: 16px;
+          border-radius: 25px;
+          font-size: 6px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .icon {
+            display: inline-block;
+            position: relative;
+            left: 0.35px;
+          }
         }
       }
-    }
 
-    &.amplitude-paused {
-      .play-button {
-        @extend .btn-primary;
+      &.amplitude-paused {
+        .play-button {
+          @extend .btn-primary;
 
-        .icon-pause {
-          display: none;
+          .icon-pause {
+            display: none;
+          }
         }
       }
-    }
 
-    &.amplitude-playing {
-      background: $light;
+      &.amplitude-playing {
+        background: $light;
 
-      .play-button {
-        @extend .btn-secondary;
+        .play-button {
+          @extend .btn-secondary;
 
-        .icon-play {
-          display: none;
+          .icon-play {
+            display: none;
+          }
         }
       }
     }
   }
 }
+

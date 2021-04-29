@@ -11,8 +11,11 @@
         </div>
         <div class="song-meta-data">
             <span class="song-title">{{ record.name }}</span>
-            <div class="text-muted">
-                {{ record.recordedAt|format_datetime('medium', 'short', locale='fr') }}
+            <div class="text-muted small">
+                Enregistré le {{ record.recordedAt|format_datetime('medium', 'short', locale='fr') }}
+            </div>
+            <div class="text-muted small">
+                Ajouté le {{ record.createdAt|format_datetime('medium', 'short', locale='fr') }}
             </div>
         </div>
     </div>

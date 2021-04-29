@@ -49,6 +49,7 @@ const dropzoneElem = document.getElementById('file-dropzone');
 const fileDrop = new Dropzone('#file-dropzone', {
     url: dropzoneElem.getAttribute('action'),
     acceptedFiles: 'audio/aac, audio/mpeg, .mp3, .aac',
+    dictDefaultMessage: $('#dropzone_placeholder_template').html(),
     init: function () {
         this.on("success", function (file) {
             const record = JSON.parse(JSON.parse(file.xhr.responseText).record);

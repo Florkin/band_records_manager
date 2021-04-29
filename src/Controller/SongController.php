@@ -90,7 +90,7 @@ class SongController extends AbstractController
      */
     public function show(Song $song): Response
     {
-        $records = $this->recordRepository->findBySongQuery($song);
+        $records = $this->recordRepository->findBySong($song);
         return $this->render(
             'song/show.html.twig',
             [
@@ -151,7 +151,7 @@ class SongController extends AbstractController
     public function ajaxGetRecords(Song $song)
     {
         $context = SerializationContext::create()->setGroups('recordList');
-        $json = $this->serializer->serialize($this->recordRepository->findBySongQuery($song), 'json', $context);
+        $json = $this->serializer->serialize($this->recordRepository->findBySong($song), 'json', $context);
 
         return new JsonResponse($json);
     }

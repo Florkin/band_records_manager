@@ -9,7 +9,7 @@
             <h1 class="display-1">{{ song.name }}</h1>
         </div>
         <div class="row">
-            <div class="col-12 col-xl-6 border-right">
+            <div class="player-mobile-fixed col-xl-6 border-xl-right">
                 <div class="flex-center-box">
                     {% include '_partials/_audio-player.html.twig' %}
                 </div>
@@ -22,10 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="py-4">
-            <h3 class="display-4">
-                Ajouter des enregistrements a ce titre&nbsp;:
-            </h3>
+        <div class="py-5 mt-5">
             {% include 'record/_partials/_dropzone.html.twig' %}
         </div>
     </div>

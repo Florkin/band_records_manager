@@ -20,7 +20,7 @@ class RecordRepository extends ServiceEntityRepository
         parent::__construct($registry, Record::class);
     }
 
-    public function findBySongQuery(Song $song)
+    public function findBySong(Song $song)
     {
         return $this->createQueryBuilder('r')
             ->where('r.song = :song')

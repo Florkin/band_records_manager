@@ -49,6 +49,7 @@ class RecordFixtures extends Fixture implements DependentFixtureInterface
             $record->setName($file->getFilename());
             $record->setRecordFile($file);
             $record->setSong($this->getReference('song_'.rand(0, $this->params->get('fixtures.number_of_songs') - 1)));
+            $record->setRecordAt(new \DateTime());
             $manager->persist($record);
         }
         $manager->flush();

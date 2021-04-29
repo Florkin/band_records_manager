@@ -42,6 +42,11 @@ class Record
     private $name;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $recordedAt;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -152,6 +157,18 @@ class Record
     public function setSong(?Song $song): self
     {
         $this->song = $song;
+
+        return $this;
+    }
+
+    public function getRecordedAt(): ?\DateTimeInterface
+    {
+        return $this->recordedAt;
+    }
+
+    public function setRecordedAt(?\DateTimeInterface $recordedAt): self
+    {
+        $this->recordedAt = $recordedAt;
 
         return $this;
     }

@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-12">
+        <div id="meta-container">
+            <span data-amplitude-song-info="name" class="song-name"></span>
+        </div>
+        <div id="time-container" class="my-4">
+              <span class="current-time">
+                <span class="amplitude-current-minutes"></span>:<span class="amplitude-current-seconds"></span>
+              </span>
+            <div id="progress-container">
+                <div class="amplitude-wave-form"></div>
+                <input type="range" class="amplitude-song-slider"/>
+                <progress id="song-played-progress" class="amplitude-song-played-progress"></progress>
+                <progress id="song-buffered-progress" class="amplitude-buffered-progress"
+                          value="0"></progress>
+            </div>
+            <span class="duration">
+                <span class="amplitude-duration-minutes"></span>:<span class="amplitude-duration-seconds"></span>
+            </span>
+        </div>
+    </div>
+    <div class="col-12">
+        <div id="control-container">
+            <div id="repeat-container">
+                <div class="amplitude-repeat" id="repeat"></div>
+                <div class="amplitude-shuffle amplitude-shuffle-off" id="shuffle"></div>
+            </div>
+
+            <div id="central-control-container">
+                <div class="player-controls">
+                    <div class="amplitude-prev" id="previous">
+                        <span class="icon icon-back"></span>
+                    </div>
+                    <div class="amplitude-play-pause" id="play-pause">
+                        <span class="icon icon-play"></span>
+                        <span class="icon icon-pause"></span>
+                    </div>
+                    <div class="amplitude-next" id="next">
+                        <span class="icon icon-next-1"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

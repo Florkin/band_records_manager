@@ -168,7 +168,7 @@ class RecordController extends AbstractController
 
         $context = SerializationContext::create()->setGroups('recordList');
         $jsonRecord = $this->serializer->serialize($record, 'json', $context);
-        $template = $this->renderView('record/partials/_record.html.twig', ['record' => $record]);
+        $template = $this->renderView('record/_partials/_record.html.twig', ['record' => $record]);
 
         return new JsonResponse(['record' => $jsonRecord, 'template' => $template]);
     }

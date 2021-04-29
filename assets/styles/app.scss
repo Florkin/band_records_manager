@@ -1,3 +1,12 @@
+// Vendor
+@import "./base/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~dropzone/dist/dropzone.css";
+
+// Base
+@import "base/utilities";
+@import "base/bootstrap-overrides";
+
+// Components
 @import "./components/audio-player";
+@import "./components/song-list";

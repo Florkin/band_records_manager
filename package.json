@@ -1,11 +1,11 @@
 {
     "devDependencies": {
         "@symfony/stimulus-bridge": "^2.0.0",
-        "@symfony/webpack-encore": "^1.0.0",
+        "@symfony/webpack-encore": "^1.1.2",
         "core-js": "^3.0.0",
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.32.8",
-        "sass-loader": "11.0.0",
+        "sass-loader": "^10.0.0",
         "stimulus": "^2.0.0",
         "webpack-notifier": "^1.6.0"
     },
@@ -18,10 +18,14 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@fontsource/poppins": "^4.2.2",
         "@popperjs/core": "^2.9.1",
         "amplitudejs": "^5.3.1",
         "bootstrap": "^4.6.0",
         "dropzone": "^5.9.2",
-        "jquery": "^3.6.0"
+        "glob-all": "^3.2.1",
+        "jquery": "^3.6.0",
+        "mini-css-extract-plugin": "^1.5.1",
+        "webfonts-loader": "^7.2.0"
     }
 }

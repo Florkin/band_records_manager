@@ -1,0 +1,65 @@
+@import "../base/variables";
+
+.amplitude-song-container {
+  padding: 15px 10px;
+
+  @extend .border-bottom;
+
+  .amplitude-song-flex {
+    display: flex;
+    align-items: center;
+  }
+
+  &.amplitude-play-pause {
+    cursor: pointer;
+
+    &:hover {
+      background: $light;
+    }
+
+    .play-button-container {
+      width: 40px;
+
+      .play-button {
+        @extend .btn;
+
+        padding: 0;
+        width: 16px;
+        height: 16px;
+        border-radius: 25px;
+        font-size: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .icon {
+          display: inline-block;
+          position: relative;
+          left: 0.35px;
+        }
+      }
+    }
+
+    &.amplitude-paused {
+      .play-button {
+        @extend .btn-primary;
+
+        .icon-pause {
+          display: none;
+        }
+      }
+    }
+
+    &.amplitude-playing {
+      background: $light;
+
+      .play-button {
+        @extend .btn-secondary;
+
+        .icon-play {
+          display: none;
+        }
+      }
+    }
+  }
+}

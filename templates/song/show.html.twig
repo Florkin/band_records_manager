@@ -3,95 +3,121 @@
 {% block title %}Song{% endblock %}
 
 {% block body %}
-    <h1>Song</h1>
+    {# <h1>Song</h1> #}
+    {# <span id="song-identifier" data-song-id="{{ song.id }}" class="d-none" hidden></span> #}
+    {# <div id="blue-playlist-container"> #}
+    {# <!-- Amplitude Player --> #}
+    {# <div id="amplitude-player"> #}
+
+    {# <!-- Left Side Player --> #}
+    {# <div id="amplitude-left"> #}
+    {# <img data-amplitude-song-info="cover_art_url" class="album-art"/> #}
+    {# <div class="amplitude-visualization" id="large-visualization"> #}
+
+    {# </div> #}
+    {# <div id="player-left-bottom"> #}
+    {# <div id="time-container"> #}
+    {# <span class="current-time"> #}
+    {# <span class="amplitude-current-minutes"></span>:<span class="amplitude-current-seconds"></span> #}
+    {# </span> #}
+    {# <div id="progress-container"> #}
+    {# <div class="amplitude-wave-form"> #}
+
+    {# </div> #}
+    {# <input type="range" class="amplitude-song-slider"/> #}
+    {# <progress id="song-played-progress" class="amplitude-song-played-progress"></progress> #}
+    {# <progress id="song-buffered-progress" class="amplitude-buffered-progress" #}
+    {# value="0"></progress> #}
+    {# </div> #}
+    {# <span class="duration"> #}
+    {# <span class="amplitude-duration-minutes"></span>:<span class="amplitude-duration-seconds"></span> #}
+    {# </span> #}
+    {# </div> #}
+
+    {# <div id="control-container"> #}
+    {# <div id="repeat-container"> #}
+    {# <div class="amplitude-repeat" id="repeat"></div> #}
+    {# <div class="amplitude-shuffle amplitude-shuffle-off" id="shuffle"></div> #}
+    {# </div> #}
+
+    {# <div id="central-control-container"> #}
+    {# <div id="central-controls"> #}
+    {# <div class="amplitude-prev" id="previous"></div> #}
+    {# <div class="amplitude-play-pause" id="play-pause"></div> #}
+    {# <div class="amplitude-next" id="next"></div> #}
+    {# </div> #}
+    {# </div> #}
+
+    {# <div id="volume-container"> #}
+    {# <div class="volume-controls"> #}
+    {# <div class="amplitude-mute amplitude-not-muted"></div> #}
+    {# <input type="range" class="amplitude-volume-slider"/> #}
+    {# <div class="ms-range-fix"></div> #}
+    {# </div> #}
+    {# <div class="amplitude-shuffle amplitude-shuffle-off" id="shuffle-right"></div> #}
+    {# </div> #}
+    {# </div> #}
+
+    {# <div id="meta-container"> #}
+    {# <span data-amplitude-song-info="name" class="song-name"></span> #}
+
+    {# <div class="song-artist-album"> #}
+    {# <span data-amplitude-song-info="artist"></span> #}
+    {# <span data-amplitude-song-info="album"></span> #}
+    {# </div> #}
+    {# </div> #}
+    {# </div> #}
+    {# </div> #}
+    {# <!-- End Left Side Player --> #}
+
+    {# <!-- Right Side Player --> #}
+    {# <div id="amplitude-list"> #}
+    {# {% include 'record/partials/_listing.html.twig' %} #}
+    {# </div> #}
+    {# <!-- End Right Side Player --> #}
+    {# </div> #}
+    {# <!-- End Amplitdue Player --> #}
+
+    {# <form action="{{ path('add_record', {id: song.id}) }}" #}
+    {# class="dropzone" #}
+    {# id="file-dropzone" #}
+    {# enctype="multipart/form-data"></form> #}
+    {# </div> #}
+
+    {# <a href="{{ path('song_index') }}">back to list</a> #}
+
+    {# <a href="{{ path('song_edit', {'id': song.id}) }}">edit</a> #}
+
+    {# {{ include('song/_delete_form.html.twig') }} #}
+
+
+
+
+
     <span id="song-identifier" data-song-id="{{ song.id }}" class="d-none" hidden></span>
-    <div id="blue-playlist-container">
-        <!-- Amplitude Player -->
-        <div id="amplitude-player">
-
-            <!-- Left Side Player -->
-            <div id="amplitude-left">
-                <img data-amplitude-song-info="cover_art_url" class="album-art"/>
-                <div class="amplitude-visualization" id="large-visualization">
-
-                </div>
-                <div id="player-left-bottom">
-                    <div id="time-container">
-              <span class="current-time">
-                <span class="amplitude-current-minutes"></span>:<span class="amplitude-current-seconds"></span>
-              </span>
-                        <div id="progress-container">
-                            <div class="amplitude-wave-form">
-
-                            </div>
-                            <input type="range" class="amplitude-song-slider"/>
-                            <progress id="song-played-progress" class="amplitude-song-played-progress"></progress>
-                            <progress id="song-buffered-progress" class="amplitude-buffered-progress"
-                                      value="0"></progress>
-                        </div>
-                        <span class="duration">
-                <span class="amplitude-duration-minutes"></span>:<span class="amplitude-duration-seconds"></span>
-              </span>
-                    </div>
-
-                    <div id="control-container">
-                        <div id="repeat-container">
-                            <div class="amplitude-repeat" id="repeat"></div>
-                            <div class="amplitude-shuffle amplitude-shuffle-off" id="shuffle"></div>
-                        </div>
-
-                        <div id="central-control-container">
-                            <div id="central-controls">
-                                <div class="amplitude-prev" id="previous"></div>
-                                <div class="amplitude-play-pause" id="play-pause"></div>
-                                <div class="amplitude-next" id="next"></div>
-                            </div>
-                        </div>
-
-                        <div id="volume-container">
-                            <div class="volume-controls">
-                                <div class="amplitude-mute amplitude-not-muted"></div>
-                                <input type="range" class="amplitude-volume-slider"/>
-                                <div class="ms-range-fix"></div>
-                            </div>
-                            <div class="amplitude-shuffle amplitude-shuffle-off" id="shuffle-right"></div>
-                        </div>
-                    </div>
-
-                    <div id="meta-container">
-                        <span data-amplitude-song-info="name" class="song-name"></span>
-
-                        <div class="song-artist-album">
-                            <span data-amplitude-song-info="artist"></span>
-                            <span data-amplitude-song-info="album"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Left Side Player -->
-
-            <!-- Right Side Player -->
-            <div id="amplitude-list">
-                {% include 'record/partials/_listing.html.twig' %}
-            </div>
-            <!-- End Right Side Player -->
+    <div class="container">
+        <div class="flex-center-box py-3">
+            <h1 class="display-1">{{ song.name }}</h1>
         </div>
-        <!-- End Amplitdue Player -->
-
-        <form action="{{ path('add_record', {id: song.id}) }}"
-              class="dropzone"
-              id="file-dropzone"
-              enctype="multipart/form-data"></form>
+        <div class="row">
+            <div class="col-12 col-xl-6 border-right">
+                <div class="flex-center-box">
+                    {% include '_partials/_audio-player.html.twig' %}
+                </div>
+            </div>
+            <div class="col-12 col-xl-6">
+                <div class="flex-center-box">
+                    <div id="records_list">
+                        {% include 'record/_partials/_listing.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <a href="{{ path('song_index') }}">back to list</a>
 
-    <a href="{{ path('song_edit', {'id': song.id}) }}">edit</a>
-
-    {{ include('song/_delete_form.html.twig') }}
 {% endblock %}
 
 {% block scripts %}
     {{ encore_entry_script_tags('audioPlayer') }}
-    {{ encore_entry_script_tags('fileDrop') }}
 {% endblock %}

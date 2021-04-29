@@ -19,7 +19,7 @@ const addRecord = (record, template) => {
     const index = Amplitude.addSong(record);
     const domElem = $(template)
     domElem.attr('data-amplitude-song-index', index)
-    $('#records_list').append(domElem);
+    $('#records_list').prepend(domElem);
 }
 
 const initPlayer = () => {
@@ -42,10 +42,6 @@ Amplitude.init({
         sample_rate: 100
     }
 });
-
-const records = getRecords();
-console.log(records);
-
 
 // DROPZONE TO ADD NEW RECORDS
 Dropzone.autoDiscover = false;

@@ -25,7 +25,7 @@ class RecordRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('r')
             ->where('r.song = :song')
             ->setParameter('song', $song)
-            ->orderBy('r.recordedAt', 'DESC')
+            ->orderBy('r.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
     }

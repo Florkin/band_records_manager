@@ -151,7 +151,7 @@ class SongController extends AbstractController
     public function ajaxGetRecords(Song $song)
     {
         $context = SerializationContext::create()->setGroups('recordList');
-        $json = $this->serializer->serialize($song->getRecords(), 'json', $context);
+        $json = $this->serializer->serialize($this->recordRepository->findBySongQuery($song), 'json', $context);
 
         return new JsonResponse($json);
     }

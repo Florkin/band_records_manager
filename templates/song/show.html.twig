@@ -96,12 +96,22 @@
 
     <span id="song-identifier" data-song-id="{{ song.id }}" class="d-none" hidden></span>
     <div class="container">
-        <div class="flex-center">
-            <h1 class="display-3">{{ song.name }}</h1>
+        <div class="flex-center-box py-3">
+            <h1 class="display-1">{{ song.name }}</h1>
         </div>
-        <hr>
-        <div class="flex-center">
-            {% include 'song/_audio-player.html.twig' %}
+        <div class="row">
+            <div class="col-12 col-xl-6 border-right">
+                <div class="flex-center-box">
+                    {% include 'song/_audio-player.html.twig' %}
+                </div>
+            </div>
+            <div class="col-12 col-xl-6">
+                <div class="flex-center-box">
+                    <div id="records_list">
+                        {% include 'record/partials/_listing.html.twig' %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

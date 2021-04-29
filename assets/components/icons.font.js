@@ -1,4 +1,3 @@
-// myfont.font.js
 module.exports = {
     'files': [
         '../icons/*.svg'

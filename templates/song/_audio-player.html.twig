@@ -1,6 +1,9 @@
 <div class="row">
-    <div class="col-12 col-md-6 col-lg-8">
-        <div id="time-container">
+    <div class="col-12">
+        <div id="meta-container">
+            <span data-amplitude-song-info="name" class="song-name"></span>
+        </div>
+        <div id="time-container" class="my-4">
               <span class="current-time">
                 <span class="amplitude-current-minutes"></span>:<span class="amplitude-current-seconds"></span>
               </span>
@@ -15,11 +18,8 @@
                 <span class="amplitude-duration-minutes"></span>:<span class="amplitude-duration-seconds"></span>
             </span>
         </div>
-        <div id="meta-container" class="mt-3">
-            <span data-amplitude-song-info="name" class="song-name"></span>
-        </div>
     </div>
-    <div class="col-12 col-sm-6 col-lg-4">
+    <div class="col-12">
         <div id="control-container">
             <div id="repeat-container">
                 <div class="amplitude-repeat" id="repeat"></div>
@@ -27,18 +27,17 @@
             </div>
 
             <div id="central-control-container">
-                <div id="central-controls">
-                    <div class="amplitude-prev" id="previous"></div>
-                    <div class="amplitude-play-pause" id="play-pause"></div>
-                    <div class="amplitude-next" id="next"></div>
-                </div>
-            </div>
-
-            <div id="volume-container">
-                <div class="volume-controls">
-                    <div class="amplitude-mute amplitude-not-muted"></div>
-                    <input type="range" class="amplitude-volume-slider"/>
-                    <div class="ms-range-fix"></div>
+                <div class="player-controls">
+                    <div class="amplitude-prev" id="previous">
+                        <span class="icon icon-back"></span>
+                    </div>
+                    <div class="amplitude-play-pause" id="play-pause">
+                        <span class="icon icon-play"></span>
+                        <span class="icon icon-pause"></span>
+                    </div>
+                    <div class="amplitude-next" id="next">
+                        <span class="icon icon-next-1"></span>
+                    </div>
                 </div>
             </div>
         </div>

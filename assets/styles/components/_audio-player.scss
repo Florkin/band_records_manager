@@ -13,7 +13,7 @@
     width: 40px;
 
     @include media-breakpoint-down(sm) {
-      display:none;
+      display: none;
     }
   }
 
@@ -300,7 +300,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 999;
     padding: 30px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
   }
@@ -311,6 +311,12 @@
     .song-name-container {
       display: none;
     }
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  main {
+    padding-bottom: 170px;
   }
 }
 

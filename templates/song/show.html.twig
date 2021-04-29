@@ -8,6 +8,9 @@
         <div class="flex-center-box py-3">
             <h1 class="display-1">{{ song.name }}</h1>
         </div>
+        <div class="py-3">
+            <a href="#dropzone" class="d-block d-xl-none btn btn-outline-success">Ajouter des enregistrements</a>
+        </div>
         <div class="row">
             <div class="player-mobile-fixed col-xl-6 border-xl-right">
                 <div class="flex-center-box">
@@ -22,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <div class="py-5 mt-5">
+        <div class="py-5 mt-5" id="dropzone">
             {% include 'record/_partials/_dropzone.html.twig' %}
         </div>
     </div>
